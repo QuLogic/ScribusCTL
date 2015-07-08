@@ -6,15 +6,18 @@ compiler:
 
 before_install:
   - sudo add-apt-repository --yes ppa:kalakris/cmake
-  - sudo add-apt-repository --yes ppa:ubuntu-sdk-team/ppa
+  - sudo add-apt-repository --yes ppa:beineri/opt-qt541
   - sudo apt-get update -qq
   - sudo apt-get install cmake
     libboost-python-dev libcups2-dev libhunspell-dev libhyphen-dev liblcms2-dev libpodofo-dev libtiff-dev
-    libxml2-dev python-all-dev zlib1g-dev qtbase5-dev qtdeclarative5-dev libqt5webkit5-dev libqt5opengl5-dev
-    qttools5-dev qttools5-dev-tools libgraphicsmagick++1-dev libopenscenegraph-dev libpoppler-dev
+    libxml2-dev python-all-dev zlib1g-dev qt54base qt54declarative qt54webkit
+    qt54tools libgraphicsmagick++1-dev libopenscenegraph-dev libpoppler-dev
     libpoppler-private-dev libwpg-dev libvisio-dev libicu-dev
 
-script: cmake . && make
+script:
+  - source /opt/qt54/bin/qt54-env.sh
+  - cmake .
+  - make
 
 notifications:
   email: false
