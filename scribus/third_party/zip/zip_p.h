@@ -62,7 +62,12 @@ class ZipPrivate : public QObject
     Q_OBJECT
 
 public:
+#ifdef z_crc_t
 	typedef z_crc_t crc_t;
+#else
+	typedef uLongf crc_t;
+#endif
+
 	ZipPrivate();
 	virtual ~ZipPrivate();
 
