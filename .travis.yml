@@ -5,10 +5,11 @@ compiler:
   - clang
 
 before_install:
+  - sudo add-apt-repository --yes ppa:ubuntu-toolchain-r/test
   - sudo add-apt-repository --yes ppa:kalakris/cmake
   - sudo add-apt-repository --yes ppa:beineri/opt-qt541
   - sudo apt-get update -qq
-  - sudo apt-get install cmake
+  - sudo apt-get install gcc-4.8 g++-4.8 cmake
     libboost-python-dev libcups2-dev libhunspell-dev libhyphen-dev liblcms2-dev libpodofo-dev libtiff-dev
     libxml2-dev python-all-dev zlib1g-dev qt54base qt54declarative qt54webkit
     qt54tools libgraphicsmagick++1-dev libopenscenegraph-dev libpoppler-dev
@@ -16,6 +17,10 @@ before_install:
 
 script:
   - source /opt/qt54/bin/qt54-env.sh
+  - if [[ $CC == gcc ]]; then
+      export CC="gcc-4.8";
+      export CXX="g++-4.8";
+    fi
   - cmake .
   - make
 
