@@ -25,9 +25,13 @@ script:
   - if [[ $CC == gcc ]]; then
       export CC="gcc-4.8";
       export CXX="g++-4.8";
+      export NPROC=8;
+    else
+      export NPROC=3;
     fi
+
   - cmake .
-  - make -j8
+  - make -j$NPROC
 
 notifications:
   email: false
