@@ -27,7 +27,7 @@ script:
       export CXX="g++-4.8";
       export NPROC=8;
     else
-      export NPROC=3;
+      export NPROC=2;
     fi
 
   - cmake .
